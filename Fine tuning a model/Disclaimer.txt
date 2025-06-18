@@ -1,0 +1,3 @@
+I am not the owner of the original notebook, this is the link of the orignial notebook:
+https://www.kaggle.com/code/adinishad/chest-x-ray-images-pneumonia
+I just improved it by changing the hyperparameters of the model. 

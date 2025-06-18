@@ -1,0 +1,96 @@
+class Employee:
+    Data=[]
+class EmployeesManager(Employee):
+    def ADD():
+        progress=True
+        print("Adding employee")
+        try:
+            name=str(input("Enter name: "))
+            age=int(input("Enter the age: "))
+            salary=int((input("Enter the salary: ")))
+        except:
+            print("Enter input as requested,please.")
+            progress=EmployeesManager.ADD()
+        if progress==True:
+            Employee.Data.append([name,age,salary])
+        return False
+    def DATA():
+        exist=False
+        if len(Employee.Data)!=0:
+            print("**Employees List**")
+            for i in range(0,len(Employee.Data)):
+                print(Employee.Data[i][0]+" has age "+str(Employee.Data[i][1])+" and salary "+str(Employee.Data[i][2]))
+                exist=True
+        if exist==False:
+            print("No Data in the system")
+    def Delete():
+        run=True
+        try:
+            Age1=int(input("Enter Age from: "))
+            Age2=int(input("Enter Age to: "))
+            if Age1>Age2:
+                print("Invalid input. Please stick to the instructions")
+                run=EmployeesManager.Delete()
+        except:
+            print("please, Enter input as requested.")
+            run=EmployeesManager.Delete()
+        if run==True:
+            if len(Employee.Data)!=0:
+                x=0
+                while x<len(Employee.Data):
+                    if Age1<=Employee.Data[x][1] and Employee.Data[x][1]<=Age2:
+                        print("Deleting "+Employee.Data[x][0])
+                        Employee.Data.remove(Employee.Data[x])
+                        x-=1
+                    x+=1
+            else:
+                print("There is no Data.")
+        return False
+    def UPdate():
+        exist=False
+        GO=True
+        try:
+           name=str(input("Enter Name: "))
+           salary=int(input("Enter new salary: "))
+        except:
+           print("please, Enter input as requested.")
+           GO=EmployeesManager.UPdate()
+        if GO==True:
+            for i in range(0, len(Employee.Data)):
+                if Employee.Data[i][0]==name:
+                    Employee.Data[i][2]=salary
+                    exist=True
+        if exist==False:
+           print("That Employee doesn't exist.")
+        return False
+class FrontendManager(EmployeesManager):
+    def __init__():
+        RUN=True
+        while(RUN==True):
+            print("program options: ")
+            print("1)Add new employee")
+            print("2)Print all employees")
+            print("3)Delete by age")
+            print("4)Update Salary by name")
+            print("5)End the program")
+            try:
+                O_number=int(input("Enter your choice (From 1 to 5): "))
+            except:
+                print("Enter input as requested,please.")
+                continue
+            if O_number not in range(1,6):
+                print("Please, stick to the range of numbers.")
+                continue
+            else:
+                if O_number==1:
+                   EmployeesManager.ADD()
+                elif O_number==2:
+                   EmployeesManager.DATA()
+                elif O_number==3:
+                   EmployeesManager.Delete()
+                elif O_number==4:
+                   EmployeesManager.UPdate()
+                elif O_number==5:
+                   print("The sytem is turning Off.")
+                   RUN=False
+FrontendManager.__init__()
